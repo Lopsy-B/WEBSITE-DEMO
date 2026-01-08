@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>béblou — Home</title>
+
+<style>
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+/* HEADER */
+header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 60px;
+}
+
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 24px;
+  font-weight: bold;
+}
+
+.logo img {
+  width: 40px;
+  filter: drop-shadow(0 4px 6px rgba(0,0,0,0.05));
+}
+
+.search-bar input {
+  padding: 10px 15px;
+  border-radius: 20px;
+  border: 1px solid #ccc;
+  width: 220px;
+}
+
+nav a {
+  margin-left: 25px;
+  text-decoration: none;
+  color: #333;
+}
+
+/* HERO */
+.hero {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 60px;
+  background: #f5f7f6;
+  background-image: url(IMG.PNG);
+}
+
+.hero-text {
+  max-width: 450px;
+}
+
+.hero-text h1 {
+  font-size: 40px;
+  margin-bottom: 15px;
+}
+
+.hero-text p {
+  color: #555;
+  margin-bottom: 20px;
+}
+
+.hero-text button {
+  padding: 12px 30px;
+  border-radius: 25px;
+  border: none;
+  background: #4f8f7a;
+  color: white;
+}
+
+/* AUTH CARD */
+.auth-card {
+  background: white;
+  padding: 25px;
+  width: 280px;
+  border-radius: 20px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.auth-card h3 {
+  margin-bottom: 15px;
+}
+
+.auth-card input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  border: 1px solid #ccc;
+}
+
+.auth-card button {
+  width: 100%;
+  padding: 10px;
+  border-radius: 20px;
+  border: none;
+  background: #4f8f7a;
+  color: white;
+}
+
+/* BOOKS */
+.books {
+  padding: 60px;
+}
+
+.books h2 {
+  margin-bottom: 30px;
+}
+
+.book-list {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 40px;
+}
+
+.book-card {
+  width: 220px;
+  padding: 20px;
+  border-radius: 20px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  transition: 0.3s ease;
+}
+
+.book-card img {
+  width: 100%;
+  border-radius: 15px;
+  margin-bottom: 15px;
+}
+
+/* Hover overlay */
+.book-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(79, 77, 77, 0.55);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: 0.3s;
+}
+
+.book-overlay span {
+  margin-bottom: 10px;
+}
+
+.book-card:hover {
+  transform: scale(1.05);
+  filter: saturate(1.3);
+}
+
+.book-card:hover .book-overlay {
+  opacity: 1;
+}
+
+.green { background: #4f8f7a; }
+.orange { background: #f4a261; }
+.blue { background: #6aaed9; }
+.pink { background: #ed869c; }
+
+/* SIDEBAR */
+#toggle {
+  display: none;
+}
+
+.sidebar {
+  position: fixed;
+  top: 0;
+  right: -260px;
+  width: 260px;
+  height: 100%;
+  background: #4f8f7a;
+  color: white;
+  transition: right 0.3s ease;
+}
+
+#toggle:checked ~ .sidebar {
+  right: 0;
+}
+
+.sidebar-btn {
+  position: absolute;
+  left: -45px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 45px;
+  height: 45px;
+  background: #4f8f7a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 10px 0 0 10px;
+  cursor: pointer;
+}
+
+.sidebar-content {
+  padding: 80px 20px;
+}
+
+.sidebar-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.sidebar-item div {
+  width: 40px;
+  height: 55px;
+  background: rgba(255,255,255,0.4);
+  border-radius: 5px;
+}
+
+/* FOOTER */
+footer {
+  background: #f2f2f2;
+  padding: 50px 60px;
+}
+
+.footer-main {
+  display: flex;
+  justify-content: space-between;
+}
+
+.footer-main div h4 {
+  margin-bottom: 15px;
+}
+
+.footer-main div p {
+  margin-bottom: 8px;
+  color: #555;
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 30px;
+  color: #777;
+  font-size: 14px;
+}
+
+.cart { border-radius: 2px; background-color: #4f8f7a; border: none; color: #f2f2f2; width: 55px; box-shadow: #124b38; }
+
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="header-left">
+    <div class="logo">
+      <img src="Béblou logo.png">
+      <span>béblou</span>
+    </div>
+    <div class="search-bar">
+      <input type="text" placeholder="Search books...">
+    </div>
+  </div>
+
+  <nav>
+    <a href="#">Home</a>
+    <a href="#">Books</a>
+    <a href="#">Categories</a>
+    <a href="#">About</a>
+  </nav>
+</header>
+
+<section class="hero">
+  <div class="hero-text">
+    <h1>Where little stories make big dreams</h1>
+    <p>Discover magical books carefully selected for curious young readers.</p>
+    <button>Shop Books</button>
+  </div>
+
+  <div class="auth-card">
+    <h3>Sign in</h3>
+    <input type="email" placeholder="Email">
+    <input type="password" placeholder="Password">
+    <button>Login</button>
+  </div>
+</section>
+
+<section class="books">
+  <h2>Featured Books</h2>
+
+  <div class="book-list">
+    <div class="book-card green">
+      <img src="Z.JPEG">
+      <h3>The pigeon wants a puppy</h3>
+      <p>mo Willems</p>
+      <div class="book-overlay">
+        <span>$12.99</span>
+        <button class="cart">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="book-card orange">
+      <img src="ZZZ.JPEG">
+      <h3>Little blue truck</h3>
+      <p>Alice and Jill</p>
+      <div class="book-overlay">
+        <span>$14.99</span>
+        <button class="cart">Add to cart</button>
+      </div>
+    </div>
+
+    <div class="book-card blue">
+      <img src="ZZZZZ.JPEG">
+      <h3>Diary of a wimpy kid</h3>
+      <p>Jeff Kinney</p>
+      <div class="book-overlay">
+        <span>$11.99</span>
+        <button class="cart" >Add to cart</button>
+      </div>
+    </div>
+
+    <div class="book-card pink">
+      <img src="AZ.JPEG">
+      <h3>Wicked</h3>
+      <p>a little golden book</p>
+      <div class="book-overlay">
+        <span>$10.99</span>
+        <button class="cart">Add to cart</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="book-list">
+    <div class="book-card green"><img src="ZZ.JPEG"><h3>The pigeon has to go</h3>  
+     <p>mo Willems</p>
+      <div class="book-overlay">
+        <span>$10.99</span>
+        <button class="cart">Add to cart</button>
+      </div>   </div>
+
+
+    <div class="book-card orange"><img src="ZZZZ.JPEG"><h3>Farm Sticker Fun</h3>
+     <p>Alice and Jill</p>
+      <div class="book-overlay">
+        <span>$11.99</span>
+       <a href="cart.html"> <button class="cart">Add to cart</button></a>
+      </div></div>
+
+
+
+    <div class="book-card blue"><img src="ZZZZZZ.JPEG"><h3>Cabin Fever</h3> 
+    <p>Jeff Kinney</p>
+      <div class="book-overlay">
+        <span>$11.99</span>
+        <button class="cart">Add to cart</button>
+      </div></div>
+
+
+
+
+    <div class="book-card pink"><img src="ZZZZZZZZ.JPEG"><h3>Barbie: a pet vet</h3>
+     <p>Barbie</p>
+      <div class="book-overlay">
+        <span>$11.99</span>
+        <button class="cart">Add to cart</button>
+      </div></div>
+
+
+
+
+
+  </div>
+</section>
+
+<input type="checkbox" id="toggle">
+
+<div class="sidebar">
+  <label for="toggle" class="sidebar-btn">☰</label>
+  <div class="sidebar-content">
+    <h3>Recently Viewed</h3>
+
+    <div class="sidebar-item"><div></div><span>Barbie</span></div>
+    <div class="sidebar-item"><div></div><span>Diary of a wimpy kid</span></div>
+    <div class="sidebar-item"><div></div><span>Cabin Fever</span></div>
+  </div>
+</div>
+
+<footer>
+  <div class="footer-main">
+    <div>
+      <h4>Contacts</h4>
+      <p>Email</p>
+      <p>Phone</p>
+    </div>
+    <div>
+      <h4>Services</h4>
+      <p>Book curation</p>
+      <p>Gift cards</p>
+    </div>
+    <div>
+      <h4>Shipping</h4>
+      <p>Worldwide</p>
+      <p>Returns</p>
+    </div>
+    <div>
+      <h4>Need help?</h4>
+      <p>FAQ</p>
+      <p>Support</p>
+    </div>
+  </div>
+
+  <div class="footer-bottom">
+    Created by Loubna.Begh
+  </div>
+</footer>
+
+</body>
+</html>
